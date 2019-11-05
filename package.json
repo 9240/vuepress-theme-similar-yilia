@@ -1,6 +1,6 @@
 {
   "name": "vuepress-theme-similar-yilia",
-  "version": "1.1.0",
+  "version": "1.1.3",
   "description": "vuepress类hexo的yilia主题",
   "main": "index.js",
   "publishConfig": {
@@ -8,12 +8,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:9240/vuepress-theme-similar-yilia.git",
+    "url": "git@github.com:9240/vuepress-theme-similar-yilia.git"
   },
   "keywords": [
     "documentation",
     "vuepress",
-    "generator"
+    "generator",
+    "yilia"
   ],
   "author": "9240",
   "license": "MIT",
