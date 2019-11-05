@@ -1,62 +1,147 @@
 <template>
-    <div id="Layout">
-        <div class="h-100" style="width:300px;">
-            <Sider />
-        </div>
-        <div style="background-color:#eaeaea;margin-left:300px;">
-            <div class="m-2 bg-white">
-                <div class="row justify-content-between ml-0">
-                    <div class="pl-5" style="border-left:5px solid black;">
-                        <h2 class="pt-3 pb-3 text-muted">{{title}}</h2>
-                    </div>
-                    <div class="pr-5">
-                        <h2 class="pt-3 pb-3 text-muted">{{date.split('T')[0]}}</h2>
-                    </div>
-                </div>
-                <Content class="m-2 pl-5 pr-5"/>
-                <hr />
-                <div class="row justify-content-between">
-                    <div class="pl-5">
-                        <span class="bg-info mr-1 p-2 badge" v-for="(tag,index) in tags">{{tag}}</span>
-                    </div>
-                    <div class="pr-5">
-                        <p class="bg-dark p-1">
-                            <a href="item.path" style="color:#fff;">分享</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+  <div
+    class="theme-container"
+    :class="pageClasses"
+    @touchstart="onTouchStart"
+    @touchend="onTouchEnd"
+  >
+    <Navbar
+      v-if="!shouldShowNavbar"
+      @toggle-sidebar="toggleSidebar"
+    />
+
+    <div
+      class="sidebar-mask"
+      @click="toggleSidebar(false)"
+    ></div>
+
+    <Sidebar
+      :items="sidebarItems"
+      @toggle-sidebar="toggleSidebar"
+    >
+      <slot
+        name="sidebar-top"
+        #top
+      />
+      <slot
+        name="sidebar-bottom"
+        #bottom
+      />
+    </Sidebar>
+
+    <Home v-if="$page.frontmatter.home"/>
+
+    <Page
+      v-else
+      :sidebar-items="sidebarItems"
+    >
+      <slot
+        name="page-top"
+        #top
+      />
+      <slot
+        name="page-bottom"
+        #bottom
+      />
+    </Page>
+  </div>
 </template>
+
 <script>
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Sider from './sider';
+import Home from '@theme/components/Home.vue'
+import Navbar from '@theme/components/Navbar.vue'
+import Page from '@theme/components/Page.vue'
+import Sidebar from '@theme/components/Sidebar.vue'
+import { resolveSidebarItems } from '../util'
 export default {
-    data() {
-        return {
-            date:'',
-            tags:[],
-            title:''
-        }
-    },
-    components:{
-		Sider
-	},
-    created(){
-        this.date = this.$page.frontmatter.date
-        this.tags = this.$page.frontmatter.tags
-        this.title = this.$page.frontmatter.title
+  components: { Home, Page, Sidebar, Navbar },
+
+  data () {
+    return {
+      isSidebarOpen: false
     }
+  },
+  computed: {
+    shouldShowNavbar () {
+      const { themeConfig } = this.$site
+      const { frontmatter } = this.$page
+      if (
+        frontmatter.navbar === false
+        || themeConfig.navbar === false) {
+        return false
+      }
+      return (
+        this.$title
+        || themeConfig.logo
+        || themeConfig.repo
+        || themeConfig.nav
+        || this.$themeLocaleConfig.nav
+      )
+    },
+
+    shouldShowSidebar () {
+      const { frontmatter } = this.$page
+      return (
+        // !frontmatter.home
+        // && 
+        frontmatter.sidebar !== false
+        && this.sidebarItems.length
+      )
+    },
+
+    sidebarItems () {
+      return resolveSidebarItems(
+        this.$page,
+        this.$page.regularPath,
+        this.$site,
+        this.$localePath
+      )
+    },
+
+    pageClasses () {
+      const userPageClass = this.$page.frontmatter.pageClass
+      return [
+        {
+          'no-navbar': !this.shouldShowNavbar,
+          'sidebar-open': this.isSidebarOpen,
+          'no-sidebar': !this.shouldShowSidebar
+        },
+        userPageClass
+      ]
+    }
+  },
+
+  mounted () {
+    this.$router.afterEach(() => {
+      this.isSidebarOpen = false
+    })
+  },
+
+  methods: {
+    toggleSidebar (to) {
+      this.isSidebarOpen = typeof to === 'boolean' ? to : !this.isSidebarOpen
+      this.$emit('toggle-sidebar', this.isSidebarOpen)
+    },
+
+    // side swipe
+    onTouchStart (e) {
+      this.touchStart = {
+        x: e.changedTouches[0].clientX,
+        y: e.changedTouches[0].clientY
+      }
+    },
+
+    onTouchEnd (e) {
+      const dx = e.changedTouches[0].clientX - this.touchStart.x
+      const dy = e.changedTouches[0].clientY - this.touchStart.y
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        if (dx > 0 && this.touchStart.x <= 80) {
+          this.toggleSidebar(true)
+        } else {
+          this.toggleSidebar(false)
+        }
+      }
+    }
+  }
 }
 </script>
-<style>
-a.header-anchor {
-  font-size: .85em;
-  float: left;
-  margin-left: -.87em;
-  padding-right: .23em;
-  margin-top: .125em;
-  opacity: 0;
-}
-</style>
