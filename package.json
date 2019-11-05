@@ -1,23 +1,21 @@
 {
-  "name": "@vuepress/theme-default",
-  "version": "1.2.0",
-  "description": "Default theme for VuePress",
+  "name": "vuepress-theme-similar-yilia",
+  "version": "1.1.0",
+  "description": "vuepress类hexo的yilia主题",
   "main": "index.js",
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vuejs/vuepress.git",
-    "directory": "packages/@vuepress/theme-default"
+    "url": "git@github.com:9240/vuepress-theme-similar-yilia.git",
   },
   "keywords": [
     "documentation",
-    "vue",
     "vuepress",
     "generator"
   ],
-  "author": "Evan You",
+  "author": "9240",
   "maintainers": [
     {
       "name": "ULIVZ",
@@ -26,9 +24,9 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vuejs/vuepress/issues"
+    "url": "https://github.com/9240/vuepress-theme-similar-yilia/issues"
   },
-  "homepage": "https://github.com/vuejs/vuepress/packages/@vuepress/theme-default#readme",
+  "homepage": "https://github.com/9240/vuepress-theme-similar-yilia#readme",
   "dependencies": {
     "@vuepress/plugin-active-header-links": "^1.2.0",
     "@vuepress/plugin-nprogress": "^1.2.0",
@@ -39,6 +37,5 @@
     "stylus-loader": "^3.0.2",
     "vuepress-plugin-container": "^2.0.2",
     "vuepress-plugin-smooth-scroll": "^0.0.3"
-  },
-  "gitHead": "f61e2d42b4b2d9a59630f95a37fab968dcbd8b39"
+  }
 }
