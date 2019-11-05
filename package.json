@@ -16,12 +16,6 @@
     "generator"
   ],
   "author": "9240",
-  "maintainers": [
-    {
-      "name": "ULIVZ",
-      "email": "chl814@foxmail.com"
-    }
-  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/9240/vuepress-theme-similar-yilia/issues"
