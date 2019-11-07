@@ -1,0 +1,16 @@
+base: '/'
+title: '9240'
+description: 'vuepress类hexo的yilia主题'
+markdown: {lineNumbers: true,anchor: { permalink: false }}
+theme: 'vuepress-theme-similar-yilia'
+head: [
+  ['link', { rel: 'icon', href: '/favicon.ico' }]
+]
+dest: './dist'
+themeConfig:
+  name: '9240'
+  desc: 'QQ992027995'
+  avator: '/header.jpg' #放在同级目录的bublic目录下
+  menu:
+    主页: /
+    标签: /tag/

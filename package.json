@@ -1,36 +1,85 @@
 {
-  "name": "vuepress-theme-similar-yilia",
-  "version": "1.1.3",
-  "description": "vuepress类hexo的yilia主题",
+  "_args": [
+    [
+      "@vuepress/theme-blog@1.3.2",
+      "F:\\vuepress-them\\vuepress-them"
+    ]
+  ],
+  "_development": true,
+  "_from": "@vuepress/theme-blog@1.3.2",
+  "_id": "@vuepress/theme-blog@1.3.2",
+  "_inBundle": false,
+  "_integrity": "sha512-F0fsMP7lrwcC2kccUkCkflc2iuR3Sz3uNRECEkCRCbcIpgRaLP8aA7hanp5HJ8sDdC/oH6iq+1AoOKd2LMzeqA==",
+  "_location": "/@vuepress/theme-blog",
+  "_phantomChildren": {
+    "nprogress": "0.2.0"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@vuepress/theme-blog@1.3.2",
+    "name": "@vuepress/theme-blog",
+    "escapedName": "@vuepress%2ftheme-blog",
+    "scope": "@vuepress",
+    "rawSpec": "1.3.2",
+    "saveSpec": null,
+    "fetchSpec": "1.3.2"
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@vuepress/theme-blog/-/theme-blog-1.3.2.tgz",
+  "_spec": "1.3.2",
+  "_where": "F:\\vuepress-them\\vuepress-them",
+  "author": {
+    "name": "ulivz",
+    "email": "chl814@foxmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/ulivz/vuepress-theme-blog/issues"
+  },
+  "dependencies": {
+    "@vuepress/plugin-blog": "^1.5.1",
+    "@vuepress/plugin-medium-zoom": "1.0.0",
+    "@vuepress/plugin-nprogress": "1.0.0",
+    "@vuepress/plugin-pwa": "1.0.0",
+    "@vuepress/plugin-search": "1.0.0",
+    "remove-markdown": "^0.3.0",
+    "vue-feather-icons": "^4.21.0"
+  },
+  "description": "Default blog theme for VuePress",
+  "devDependencies": {
+    "conventional-changelog-cli": "^2.0.1",
+    "eslint-config-sherry": "0.0.1",
+    "vuepress": "^1.0.0"
+  },
+  "files": [
+    "index.js",
+    "styles",
+    "layouts",
+    "global-components",
+    "fonts",
+    "components"
+  ],
+  "homepage": "https://github.com/ulivz/vuepress-theme-blog#readme",
+  "license": "MIT",
   "main": "index.js",
+  "name": "@vuepress/theme-blog",
   "publishConfig": {
-    "access": "public"
+    "registry": "https://registry.npmjs.org/"
   },
   "repository": {
-    "type": "git",
-    "url": "git@github.com:9240/vuepress-theme-similar-yilia.git"
+    "url": "git+https://github.com/ulivz/vuepress-theme-blog.git",
+    "type": "git"
   },
-  "keywords": [
-    "documentation",
-    "vuepress",
-    "generator",
-    "yilia"
-  ],
-  "author": "9240",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/9240/vuepress-theme-similar-yilia/issues"
+  "scripts": {
+    "docs:build": "vuepress build docs",
+    "docs:dev": "vuepress dev docs",
+    "example:build": "vuepress build example --temp example/.temp",
+    "example:dev": "vuepress dev example --temp example/.temp",
+    "lint": "disable",
+    "prepublishOnly": "npm run example:build && conventional-changelog -p angular -r 2 -i CHANGELOG.md -s",
+    "test": "npm run lint && jest"
   },
-  "homepage": "https://github.com/9240/vuepress-theme-similar-yilia#readme",
-  "dependencies": {
-    "@vuepress/plugin-active-header-links": "^1.2.0",
-    "@vuepress/plugin-nprogress": "^1.2.0",
-    "@vuepress/plugin-search": "^1.2.0",
-    "docsearch.js": "^2.5.2",
-    "lodash": "^4.17.15",
-    "stylus": "^0.54.5",
-    "stylus-loader": "^3.0.2",
-    "vuepress-plugin-container": "^2.0.2",
-    "vuepress-plugin-smooth-scroll": "^0.0.3"
-  }
+  "version": "1.3.2"
 }
